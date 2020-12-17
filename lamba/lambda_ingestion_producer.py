@@ -12,6 +12,7 @@ api = tw.API(auth, parser=JSONParser())
 
 def twitter_search(api, query_string, count):
     search = api.search(q=query_string, count=count, tweet_mode='extended')
+    for page in tweepy.Cursor(search).pages():
     return search
 
 def store_api_calls(dict_obj):
@@ -26,7 +27,7 @@ def store_api_calls(dict_obj):
     table.put_item(Item=metadata)
 
 results = twitter_search(api, query_string='massive puppy dog', count=5)
-store_api_calls(results['search_metadata'])
+# store_api_calls(results['search_metadata'])
 jsonfile['meta']['timestamp'] = str(datetime.utcnow())
 jsonfile = {}
 key = 0

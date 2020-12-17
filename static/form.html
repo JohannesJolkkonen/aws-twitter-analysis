@@ -1,0 +1,41 @@
+<title>Submit Form Event</title>
+
+<body>
+
+      <link rel='stylesheet' type='text/css' href='style.css'>
+
+      <div class="subscribe-box">
+
+            <h2>Find out what people are saying</h2>
+
+            <form id="searchForm" class="form">
+                  <!--  <label for="search">Your Search Terms</label> -->
+                  <input type="text" placeholder="your search terms" autocomplete="off" required="required"
+                        name='search'>
+                  <!-- <label for="email">Your Email</label> -->
+                  <input type="email" placeholder="your@email.com" autocomplete="off" required="required" name='email'>
+
+                  <button type="submit"><span>Go!</span></button>
+            </form>
+      </div>
+
+      <script>
+            const searchForm = document.getElementById('searchForm')
+
+            searchForm.addEventListener("submit", (e) => {
+                  e.preventDefault();
+
+                  const request = new XMLHttpRequest();
+                  request.open('post', 'https://q562p11lnd.execute-api.eu-central-1.amazonaws.com/prod/search');
+                  request.onload = function () {
+                        console.log(request.responseText);
+                  }
+                  const formdata = new FormData(searchForm)
+                  const json = JSON.stringify(Object.fromEntries(formdata));
+                  request.send(json)
+                  console.log(json)
+                  console.log("Form submitted.");
+            })
+      </script>
+
+</body>

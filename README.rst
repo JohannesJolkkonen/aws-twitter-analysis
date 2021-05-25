@@ -1,4 +1,4 @@
-﻿****************************************
+****************************************
 Twitter Keyphrase-Search  
 ****************************************
 A simple website that allows users to enter a short search-string of words, and then receive a rundown of 
